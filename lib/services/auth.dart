@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gatchy_work/models/user.dart';
+import 'package:gatchy_work/services/database.dart';
 
 class AuthService {
 
@@ -30,12 +31,28 @@ class AuthService {
   }
 
   // sign in method: email and pass
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password); //firebase method
+      FirebaseUser user = result.user;
+      return _userFirebase(user);
+    } catch(e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+
 
   // register with email and pass
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+
+      // Create a new document for user #uid
+      await DatabaseService(uid: user.uid).updateUserData("testUser", "productivity", 1);
+
       return _userFirebase(user);
     } catch(e) {
       print(e.toString());

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gatchy_work/services/auth.dart';
+import 'package:gatchy_work/shared/constants.dart';
+import 'package:gatchy_work/shared/loading.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -14,6 +16,7 @@ class _RegisterState extends State<Register> {
 
   // Define form key (private)
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   //local state variable - text field state
   String email = '';
@@ -23,7 +26,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.red,
@@ -47,12 +50,16 @@ class _RegisterState extends State<Register> {
           child: Column(children: <Widget>[
             SizedBox(height: 20.0),
             TextFormField(
+                decoration: textInputDecoration.copyWith(
+                    hintText: 'Email', fillColor: Colors.red[50]),
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 }),
             SizedBox(height: 20.0),
             TextFormField(
+                decoration: textInputDecoration.copyWith(
+                    hintText: 'Password', fillColor: Colors.red[50]),
                 obscureText: true,
                 validator: (val) =>
                     val.length < 6 ? 'Password must be 6+ characters' : null,
@@ -69,10 +76,14 @@ class _RegisterState extends State<Register> {
                 onPressed: () async {
                   // Validating form input
                   if (_formKey.currentState.validate()) {
+                    setState(() => loading = true);
                     dynamic result = await _auth.registerWithEmailAndPassword(
                         email, password);
                     if (result == null) {
-                      setState(() => error = 'Invalid Email');
+                      setState(() {
+                        error = 'Invalid Email';
+                        loading = false;
+                      });
                     }
                   }
                 }),
