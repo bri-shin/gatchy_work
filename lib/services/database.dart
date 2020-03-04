@@ -31,4 +31,6 @@ class DatabaseService {
   Stream<List<Goal>> get goals {
     return gatchyUser.snapshots().map(_goalListFromSnapshot); 
   }
+
+  // get user doc stream
 }

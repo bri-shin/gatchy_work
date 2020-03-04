@@ -14,7 +14,7 @@ class _SettingsFormState extends State<SettingsForm> {
   // form values
   String _currentName;
   String _currentValue;
-  int _currentGatchyDay; 
+  int _currentImportance; 
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,15 @@ class _SettingsFormState extends State<SettingsForm> {
             onChanged: (val) => setState(() => _currentValue = val), 
           ),
           // value slider
+          Slider(
+            value: (_currentImportance ?? 100).toDouble(),
+            activeColor: Colors.red[_currentImportance ?? 100],
+            inactiveColor: Colors.white,
+            min: 100,
+            max: 900,
+            divisions: 8,
+            onChanged: (val) => setState(()=> _currentImportance = val.round()),
+          ),
           RaisedButton(
             color: Colors.red,
             child: Text(
@@ -55,7 +64,7 @@ class _SettingsFormState extends State<SettingsForm> {
             onPressed: () async {
               print(_currentName);
               print(_currentValue);
-              print(_currentGatchyDay);
+              print(_currentImportance);
             },)
         ],
       )
