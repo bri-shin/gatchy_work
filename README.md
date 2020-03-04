@@ -1,2 +1,2 @@
-# gatchy_work
+# gatchY
 Productivity as first habit
