@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gatchy_work/models/user.dart';
 import 'package:gatchy_work/services/database.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = new GoogleSignIn();
+
 
   // create user object based on Firebase user
   User _userFirebase(FirebaseUser user) {
@@ -42,6 +45,24 @@ class AuthService {
     }
   }
 
+  Future signInWithGoogle() async{
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    final FirebaseUser user =
+        (await _auth.signInWithCredential(credential)).user;
+    assert(user.email != null);
+    assert(user.displayName != null);
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    return _userFirebase(user);
+  }
+
 
 
   // register with email and pass
@@ -72,3 +93,6 @@ class AuthService {
   }
 
 } 
+
+
+
