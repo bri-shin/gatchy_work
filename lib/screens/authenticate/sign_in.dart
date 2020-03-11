@@ -107,7 +107,7 @@ class _SignInState extends State<SignIn> {
                               style: new TextStyle(color: Colors.black),
                             ),
                             new TextSpan(
-                              text: 'Sign Up',
+                              text: ' Sign Up',
                               style: new TextStyle(color: Colors.pink[500]),
                               recognizer: new TapGestureRecognizer()
                                 ..onTap = () {

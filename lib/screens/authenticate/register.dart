@@ -110,7 +110,7 @@ class _RegisterState extends State<Register> {
                     style: new TextStyle(color: Colors.black),
                   ),
                   new TextSpan(
-                    text: 'Login',
+                    text: ' Login',
                     style: new TextStyle(color: Colors.pink[500]),
                     recognizer: new TapGestureRecognizer()
                       ..onTap = () { widget.toggleView();
