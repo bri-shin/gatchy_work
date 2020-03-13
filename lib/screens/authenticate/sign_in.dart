@@ -117,6 +117,24 @@ class _SignInState extends State<SignIn> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 20.0),
+                      RaisedButton(
+                          color: Colors.grey[600],
+                          child: Text(
+                            'SignIn with Google',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () async {
+                              dynamic result = await _auth
+                                  .signInWithGoogle();
+                              if (result == null) {
+                                setState(() {
+                                  error = 'Incorrect Credentials';
+                                  loading = false;
+                                });
+                              
+                            }
+                          }),
                     ])),
               ]),
             ),
