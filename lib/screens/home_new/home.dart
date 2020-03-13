@@ -14,11 +14,18 @@ class _gatchyHomeState extends State<gatchyHome> with TickerProviderStateMixin{
   var cardIndex = 0;
   ScrollController scrollController;
   var currentcolor = Colors.white;
+  AnimationController animationController;
 
-  var habitList = [HabitCardModel("Workout", Icons.directions_run, 45, 27), HabitCardModel("Read", Icons.chrome_reader_mode , 45, 27), HabitCardModel("Save", Icons.monetization_on , 45, 27)];
+  var habitList = [HabitCardModel("Workout", Icons.directions_run, 45, 27), HabitCardModel("Read", Icons.chrome_reader_mode , 45, 27), HabitCardModel("Save", Icons.monetization_on , 45, 27), HabitCardModel("Workout", Icons.directions_run, 45, 27)];
 
 
   @override
+  void initState() {
+    super.initState();
+    scrollController = new ScrollController();
+  }
+
+  @override 
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
@@ -67,7 +74,8 @@ class _gatchyHomeState extends State<gatchyHome> with TickerProviderStateMixin{
                     child: Text("Today : MARCH 12, 2020", style: TextStyle(color: Colors.black),),
                     ),
                   Container(
-                    height: 350.0,
+                    margin: const EdgeInsets.only(left: 20.0),
+                    height: 400.0,
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: 3,
@@ -79,7 +87,7 @@ class _gatchyHomeState extends State<gatchyHome> with TickerProviderStateMixin{
                             padding: const EdgeInsets.all(8.0),
                             child: Card(
                               child: Container(
-                                width: 250.0,
+                                width: 300.0,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,12 +130,24 @@ class _gatchyHomeState extends State<gatchyHome> with TickerProviderStateMixin{
                             )
                             ),
                             onHorizontalDragEnd: (details) {
-                              
-                            }
-                          ,);
-                      }
-                      
+                              animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+                              if(details.velocity.pixelsPerSecond.dx > 0) {
+                                if(cardIndex>0){
+                                  cardIndex--;
+                                }
+                              } else {
+                                if(cardIndex<2){
+                                  cardIndex++;
+                                }
+                                
+                              }
+                              setState(() {
+                                scrollController.animateTo((cardIndex) * 320.0, duration: Duration(milliseconds: 500), curve: Curves.fastOutSlowIn);
 
+                              });
+                            },
+                          );
+                        }
                       ,)
                   )
                 ],)
