@@ -3,7 +3,8 @@ import 'package:gatchy_work/models/user.dart';
 import 'package:gatchy_work/screens/wrapper.dart';
 import 'package:gatchy_work/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:gatchy_work/screens/home_new/home.dart';
+import 'package:gatchy_work/screens/home/home.dart';
+import 'package:gatchy_work/screens/home/createHabit.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       // creating an instance of authservice and accessing 'user' stream
       value: AuthService().user,
-      child: MaterialApp(home: gatchyHome(),debugShowCheckedModeBanner: false, ),
+      child: MaterialApp(home: CreateHabit(), debugShowCheckedModeBanner: false,),
     );
   }
 }

@@ -33,6 +33,9 @@ dev_dependencies:
   flutter_spinkit: "^4.1.2"
   url_launcher: "5.4.2"
   google_sign_in: ^4.1.4
+  datetime_picker_formfield: ^1.0.0
+  date_range_picker: ^1.0.6
+  flutter_iconpicker: ^0.1.5
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
