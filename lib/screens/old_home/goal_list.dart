@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "package:gatchy_work/models/goal.dart";
-import "package:gatchy_work/screens/home/goal_tile.dart";
+import "package:gatchy_work/screens/old_home/goal_tile.dart";
 
 class GoalList extends StatefulWidget {
   @override
