@@ -34,19 +34,20 @@ _pickIcon() async {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          RaisedButton(
-            onPressed: _pickIcon,
-            child: Text('Icon'),
-          ),
-          SizedBox(height: 10),
           AnimatedSwitcher(
             duration: Duration(milliseconds: 300),
             child: _icon != null ? _icon : Container()
-          )
+          ),
+          MaterialButton(
+            onPressed: _pickIcon,
+            height: 12.0,
+            child: Text('Icon', style: TextStyle(color: Colors.white, fontSize: 15.0),),
+            color: Colors.grey[700],
+          ),          
         ])
     );
   }

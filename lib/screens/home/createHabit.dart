@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:gatchy_work/shared/date.dart';
-import 'package:gatchy_work/shared/iconPicker.dart';
-
+import 'package:gatchy_work/screens/home/habit_widgets/date.dart';
+import 'package:gatchy_work/screens/home/habit_widgets/iconPicker.dart';
+import 'package:gatchy_work/screens/home/habit_widgets/addTeam.dart';
+import 'package:gatchy_work/screens/home/habit_widgets/addValue.dart';
 
 class CreateHabit extends StatefulWidget {
   @override
@@ -52,8 +53,14 @@ class _CreateHabitState extends State<CreateHabit> {
                         hintText: 'Description'
                       ),
                     ),
+                    SizedBox(height: 20),
                     DateRange(),
-                    IconPicker()
+                    SizedBox(height: 10),
+                    IconPicker(),
+                    SizedBox(height: 10),
+                    AddTeam(),
+                    SizedBox(height: 10),
+                    AddValue(),
                   ],
                 ) ,
               )

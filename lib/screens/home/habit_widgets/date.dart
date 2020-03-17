@@ -39,14 +39,17 @@ class _DateRangeState extends State<DateRange> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
+        Text(_habitDates.length != 0  && _habitDates.length == 2 ? _habitDates[0] + " to " + _habitDates[1] : "Select Date", style: TextStyle(fontSize: 15.0)),
         MaterialButton(
+        height: 12.0,
         color: Colors.grey[700],
         onPressed: _pickDate,
-        child: Text("Pick date range", style: TextStyle(color: Colors.white),)
+        child: Text("Date", style: TextStyle(color: Colors.white, fontSize: 15.0),)
         ),
-        Text(_habitDates.length != 0  && _habitDates.length == 2 ? _habitDates[0] + " to " + _habitDates[1] : "Pick Date", style: TextStyle(fontSize: 20.0)),
       ],
     );
   }
