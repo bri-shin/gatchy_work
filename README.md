@@ -1,9 +1,6 @@
 <p align="center">
-<!--   <a>
-    <img src= alt="Logo" width=72 height=72>
-  </a> -->
-
   <h3 align="center">gatchY</h3>
+  <h4>Productivity as First Habit</h4>
 
   <p align="center">
     gatchY is made with Flutter that uses Firebase
@@ -26,4 +23,4 @@ GatchY uses Firebase (Cloud Firestore) to manage users, habits, and images.
 
 Code and documentation copyright 2020 the authors. Code released under the MIT License
 
-Cheers :metal:
+Cheers from Brian and Patrick :metal:
