@@ -1,6 +1,6 @@
 <p align="center">
   <h3 align="center">gatchY</h3>
-  <h4>Productivity as First Habit</h4>
+  <h4 align="center">Productivity as First Habit</h4>
 
   <p align="center">
     gatchY is made with Flutter that uses Firebase
